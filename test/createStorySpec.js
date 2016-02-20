@@ -4,6 +4,8 @@ var createApi = require('./createApi');
 
 describe('create story', () => {
   it('adds a story to top stories', () => {
+    var api = createApi();
+
     mount();
 
     return browser.find('input.story-title').typeIn('Monkey goes crazy').then(() => {
