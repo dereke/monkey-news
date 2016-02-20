@@ -13,7 +13,11 @@ module.exports = class App {
   }
 
   renderStory(story){
-    return <div class="story">{story.title}</div>;
+    return <div class="story">
+      <span class="votes">{story.votes}</span>
+      <a class="vote-up" onclick={() => story.votes++}>up</a>
+      {story.title}
+    </div>;
   }
 
   render(){
