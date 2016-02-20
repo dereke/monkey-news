@@ -14,7 +14,8 @@ module.exports = class App {
 
   renderStory(story){
     return <div class="story">
-      <span class="votes">{story.votes}</span>
+      <a class="vote-down" onclick={() => story.votes--}>down</a>&nbsp;
+      <span class="votes">{story.votes}</span>&nbsp;
       <a class="vote-up" onclick={() => story.votes++}>up</a>
       {story.title}
     </div>;
