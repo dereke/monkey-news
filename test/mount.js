@@ -1,10 +1,10 @@
 var mountApp = require('mount-app');
 var App = require('../lib/app');
-var plastiq = require('plastiq');
+var hyperdom = require('hyperdom');
 
 module.exports = function(config, options){
   mountApp((testEl) => {
-    plastiq.append(testEl, new App(config), undefined, {
+    hyperdom.append(testEl, new App(config), undefined, {
       requestRender: setTimeout
     });
   }, {}, options);
