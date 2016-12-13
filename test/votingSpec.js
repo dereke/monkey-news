@@ -1,12 +1,14 @@
-var browser = require('browser-monkey');
-var mount = require('./mount');
+var mount = require('browser-monkey/mount/hyperdom');
+var WebApp = require('../lib/app');
 var createApi = require('./createApi');
 
-var story = browser.find('.story', {text: 'Monkey escapes from zoo'}).component({
-  votes: function() { return this.find('.votes'); },
-  voteUp: function() { return this.find('.vote-up'); },
-  voteDown: function() { return this.find('.vote-down'); }
-});
+function storyComponent(monkey) {
+  return monkey.find('.story', {text: 'Monkey escapes from zoo'}).component({
+    votes: function() { return this.find('.votes'); },
+    voteUp: function() { return this.find('.vote-up'); },
+    voteDown: function() { return this.find('.vote-down'); }
+  });
+}
 
 describe('voting', () => {
   it('can vote up a story', () => {
@@ -16,7 +18,11 @@ describe('voting', () => {
       { title: 'Research shows monkeys make better leaders', votes: 0 }
     ];
 
-    mount();
+    var monkey = mount()
+      .withApp(() => new WebApp())
+      .start();
+
+    var story = storyComponent(monkey);
 
     return story.votes().shouldHave({text: '0'}).then(() => {
       return story.voteUp().click();
@@ -32,7 +38,11 @@ describe('voting', () => {
       { title: 'Research shows monkeys make better leaders', votes: 0 }
     ];
 
-    mount();
+    var monkey = mount()
+      .withApp(() => new WebApp())
+      .start();
+
+    var story = storyComponent(monkey);
 
     return story.votes().shouldHave({text: '3'}).then(() => {
       return story.voteDown().click();

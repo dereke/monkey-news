@@ -1,5 +1,5 @@
-var browser = require('browser-monkey');
-var mount = require('./mount');
+var mount = require('browser-monkey/mount/hyperdom');
+var WebApp = require('../lib/app');
 var createApi = require('./createApi');
 
 describe('top stories', () => {
@@ -11,9 +11,11 @@ describe('top stories', () => {
       { title: 'In time monkeys will probably have their own planet' }
     ];
 
-    mount();
+    var monkey = mount()
+      .withApp(() => new WebApp())
+      .start();
 
-    return browser.find('.story').shouldHave({
+    return monkey.find('.story').shouldHave({
       length: 3, text: [
         'Monkey escapes from zoo',
         'Research shows monkeys make better leaders',
