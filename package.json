@@ -16,7 +16,6 @@
     "browser-monkey": "featurist/browser-monkey#easy-mount",
     "browserify": "^13.0.0",
     "debug": "^2.2.0",
-    "httpism": "^1.9.0",
     "hyperdom": "^0.2.0",
     "karma": "^0.13.21",
     "karma-babel-preprocessor": "^6.0.1",
@@ -27,5 +26,8 @@
     "mocha": "^2.4.5",
     "mock-xhr-router": "^1.7.0",
     "watchify": "^3.7.0"
+  },
+  "dependencies": {
+    "httpism": "^2.6.2"
   }
 }

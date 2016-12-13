@@ -1,4 +1,4 @@
-var mount = require('browser-monkey/mount/hyperdom');
+var mount = require('browser-monkey/hyperdom');
 var WebApp = require('../lib/app');
 var createApi = require('./createApi');
 
