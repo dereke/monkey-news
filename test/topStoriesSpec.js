@@ -4,14 +4,16 @@ var createApi = require('./createApi');
 
 describe('top stories', () => {
   it('shows the top x stories', () => {
-    var api = createApi();
-    api.stories = [
-      { title: 'Monkey escapes from zoo' },
-      { title: 'Research shows monkeys make better leaders' },
-      { title: 'In time monkeys will probably have their own planet' }
-    ];
+    var data = {
+      stories: [
+        { title: 'Monkey escapes from zoo' },
+        { title: 'Research shows monkeys make better leaders' },
+        { title: 'In time monkeys will probably have their own planet' }
+      ]
+    };
 
     var monkey = mount()
+      .withServer('http://localhost:3000', createApi(data))
       .withApp(() => new WebApp())
       .start();
 
@@ -22,5 +24,5 @@ describe('top stories', () => {
         'In time monkeys will probably have their own planet'
       ]
     });
-  });
-});
+  })
+})

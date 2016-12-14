@@ -4,9 +4,8 @@ var createApi = require('./createApi');
 
 describe('create story', () => {
   it('adds a story to top stories', () => {
-    var api = createApi();
-
     var monkey = mount()
+      .withServer('http://localhost:3999', createApi())
       .withApp(() => new WebApp())
       .start();
 

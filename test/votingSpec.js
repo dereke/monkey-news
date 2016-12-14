@@ -12,13 +12,15 @@ function storyComponent(monkey) {
 
 describe('voting', () => {
   it('can vote up a story', () => {
-    var api = createApi();
-    api.stories = [
-      { title: 'Monkey escapes from zoo', votes: 0 },
-      { title: 'Research shows monkeys make better leaders', votes: 0 }
-    ];
+    var data = {
+      stories: [
+        { title: 'Monkey escapes from zoo', votes: 0 },
+        { title: 'Research shows monkeys make better leaders', votes: 0 }
+      ]
+    }
 
     var monkey = mount()
+      .withServer('http://localhost:3999', createApi(data))
       .withApp(() => new WebApp())
       .start();
 
@@ -32,13 +34,15 @@ describe('voting', () => {
   });
 
   it('can vote down a story', () => {
-    var api = createApi();
-    api.stories = [
-      { title: 'Monkey escapes from zoo', votes: 3 },
-      { title: 'Research shows monkeys make better leaders', votes: 0 }
-    ];
+    var data = {
+      stories: [
+        { title: 'Monkey escapes from zoo', votes: 3 },
+        { title: 'Research shows monkeys make better leaders', votes: 0 }
+      ]
+    }
 
     var monkey = mount()
+      .withServer('http://localhost:3999', createApi(data))
       .withApp(() => new WebApp())
       .start();
 

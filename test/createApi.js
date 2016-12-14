@@ -1,21 +1,23 @@
-var router = require('mock-xhr-router');
 
-module.exports = function(){
-  var api = router();
-  var data = {
+module.exports = function(data){
+  var express = require('express');
+  var bodyParser = require('body-parser');
+
+  var app = express();
+  app.use(bodyParser.json());
+
+  var data = data || {
     stories: []
   };
 
-  api.get('/top-stories', (req) => {
-    return {
-      body: data.stories
-    };
+  app.get('/top-stories', (req, res) => {
+    res.json(data.stories);
   });
 
-  api.post('/top-stories', (req) => {
+  app.post('/top-stories', (req, res) => {
     data.stories.push(req.body);
-    return {};
+    res.status(200).send('OK');
   });
 
-  return data;
+  return app;
 };
